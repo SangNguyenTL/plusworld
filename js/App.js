@@ -119,7 +119,3 @@ byThumb("Blog1",0);
 jQuery(window).load(isotope);
 jQuery(window).smartresize(isotope);
 window.onload=showclock;
-jQuery(document).ready(function($) {
-	jQuery(".live-tile, .flip-list").not(".exclude").liveTile({pauseOnHover: true});
-	
-});
