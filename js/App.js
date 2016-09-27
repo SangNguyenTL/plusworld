@@ -28,7 +28,7 @@ if("content"in x){var t=x.content.$t}else{if("summary"in x){var t=x.summary.$t}e
 postdate=x.published.$t;if(j>imgr.length-1){j=0}
 img[o]=imgr[j];s=t;a=s.indexOf("<img");b=s.indexOf('src="',a);c=s.indexOf('"',b+5);d=s.substr(b+5,c-b-5);if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!="")){img[o]=d}
 var q=[1,2,3,4,5,6,7,8,9,10,11,12];var z=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var v=postdate.split("-")[2].substring(0,2);var h=postdate.split("-")[1];var u=postdate.split("-")[0];for(var e=0;e<q.length;e++){if(parseInt(h)==q[e]){h=z[e];break}}
-var n=v+" "+h+" "+u;var w+='<span class="tile-title"><a href="'+p+'">'+g+'</a></span><div><img src="'+img[o]+'" width="280" height="200" class="alignleft"/></div><div><p>'+removeHtmlTag(t,summaryPost2)+"...</p></div>";j++}
+var n=v+" "+h+" "+u; w+='<span class="tile-title"><a href="'+p+'">'+g+'</a></span><div><img src="'+img[o]+'" width="280" height="200" class="alignleft"/></div><div><p>'+removeHtmlTag(t,summaryPost2)+"...</p></div>";j++}
 return w;}
 
 // Recent Comment
