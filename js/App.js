@@ -1275,16 +1275,16 @@
 						u.parentNode.removeChild(u),
 						!!o
 					};
-					function n() {
-						return canTouch = "ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch || typeof window.navigator.msMaxTouchPoints != "undefined" && window.navigator.msMaxTouchPoints > 0 || c(["@media (", s.join("touch-enabled),("), i, ")", "{#metromodernizr{top:9px;position:absolute}}"].join(""), function (n) {
-								return n.offsetTop === 9
+					function jc() {
+						return canTouch = "ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch || typeof window.navigator.msMaxTouchPoints != "undefined" && window.navigator.msMaxTouchPoints > 0 || c(["@media (", s.join("touch-enabled),("), i, ")", "{#metromodernizr{top:9px;position:absolute}}"].join(""), function (cc) {
+								return cc.offsetTop === 9
 							})
 					}
 					this.canTransform = !!f(["transformProperty", "WebkitTransform", "MozTransform", "OTransform", "msTransform"]),
 					this.canTransition = h("transitionProperty"),
 					this.canTransform3d = a(),
 					this.canAnimate = h("animationName"),
-					this.canTouch = n(),
+					this.canTouch = jc(),
 					window.MetroModernizr.canTransform = this.canTransform,
 					window.MetroModernizr.canTransition = this.canTransition,
 					window.MetroModernizr.canTransform3d = this.canTransform3d,
