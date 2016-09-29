@@ -110,6 +110,9 @@ seconds='0'+seconds;miReloj='<b><span style="color:#fff;font-size:50px;">'
 // Transfer mobile
 function a(){var b=window.location.href,c=b.split("?");switch(c.length){case 1:return b+"?m=1";case 2:return 0<=c[1].search("(^|&)m=")?null:b+"&m=1";default:return null}}var d=navigator.userAgent;if(-1!=d.indexOf("Mobile")&&-1!=d.indexOf("WebKit")&&-1==d.indexOf("iPad")||-1!=d.indexOf("Opera Mini")||-1!=d.indexOf("IEMobile")){var e=a();e&&window.location.replace(e)};
 
+// Tiles
+function isotope(){var a=jQuery(".blog-posts");a.isotope({itemSelector:".item-list",resizable:true,masonry:{columnWidth:a.width()/3}})};
+
 // Scroll to top
 $(document).ready(function(){var offset=220;var duration=500;jQuery(window).scroll(function(){if(jQuery(this).scrollTop()>offset){jQuery('.back-to-top').fadeIn(duration);}else{jQuery('.back-to-top').fadeOut(duration);}});jQuery('.back-to-top').click(function(event){event.preventDefault();jQuery('html, body').animate({scrollTop:0},duration);return false;});});
 // Menu
