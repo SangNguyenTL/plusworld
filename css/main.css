@@ -444,23 +444,7 @@ visibility: hidden;
 -webkit-transition: -webkit-transform .3s, opacity .2s, visibility 0s .3s;
 transition: transform .3s, opacity .2s, visibility 0s .3s
 }
-.bt-menu .jam {
-opacity: 0;
-width: 325px;
-padding: 20px;
-height: 100px;
-background: rgba(0, 0, 0, 0.9);
-line-height: 50px;
-position: fixed;
-bottom: 10%;
-right: 7%;
-margin: auto;
-visibility: hidden;
-font-size: 50px;
-color: #fff;
--webkit-transition: -webkit-transform .3s, opacity .2s, visibility 0s .3s;
-transition: transform .3s, opacity .2s, visibility 0s .3s
-}
+
 .bt-menu ul li:first-child {
 -webkit-transform: translate3d(-100%, 200%, 0);
 transform: translate3d(-100%, 200%, 0)
