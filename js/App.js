@@ -20,7 +20,7 @@
 }
 (jQuery);
 
-
+//Isotope
 (function (a, b, c) {
 	function f(a) {
 		var b = document.documentElement.style,
@@ -792,46 +792,8 @@
 		return this
 	}
 })(window, jQuery);
-function createTicker() {
-	var b = jQuery(".breaking-news ul").children();
-	tickerItems = new Array();
-	b.each(function (a) {
-		tickerItems.push(jQuery(this).html())
-	});
-	i = 0;
-	rotateTicker()
-}
-function rotateTicker() {
-	if (i == tickerItems.length) {
-		i = 0
-	}
-	tickerText = tickerItems[i];
-	c = 0;
-	typetext();
-	setTimeout("rotateTicker()", 5000);
-	i++
-}
-var isInTag = false;
-function typetext() {
-	var b = tickerText.substr(c, 1);
-	if (b == "<") {
-		isInTag = true
-	}
-	if (b == ">") {
-		isInTag = false
-	}
-	jQuery(".breaking-news ul").html(tickerText.substr(0, c++));
-	if (c < tickerText.length + 1) {
-		if (isInTag) {
-			typetext()
-		} else {
-			setTimeout("typetext()", 28)
-		}
-	} else {
-		c = 1;
-		tickerText = ""
-	}
-}
+
+//Xử lý giao diện điều hướng
 function actinave(e) {
 	var h = window.location.href;
 	e("#navi a").each(function () {
@@ -888,7 +850,7 @@ function actinave(e) {
 	e(window).resize(f);
 	e(window).resize(g)
 }
-
+// Tìm kiếm
 function seach(a) {
 	(function (e) {
 		var l = {
@@ -966,72 +928,7 @@ function seach(a) {
 		})
 	})(jQuery)
 }
-function showrecentposts(A) {
-	var w;
-	j = (showRandomImg) ? Math.floor((imgr.length + 1) * Math.random()) : 0;
-	img = new Array();
-	for (var o = 0; o < A.feed.entry.length; o++) {
-		var x = A.feed.entry[o];
-		if (x == undefined)
-			return;
-		var g = x.title.$t;
-		var r = x.author[0].name.$t;
-		var f;
-		var p;
-		if (o == A.feed.entry.length) {
-			break
-		}
-		for (var l = 0; l < x.link.length; l++) {
-			if (x.link[l].rel == "alternate") {
-				p = x.link[l].href;
-				break
-			}
-		}
-		for (var l = 0; l < x.link.length; l++) {
-			if (x.link[l].rel == "replies" && x.link[l].type == "text/html") {
-				f = x.link[l].title.split(" ")[0];
-				break
-			}
-		}
-		if ("content" in x) {
-			var t = x.content.$t
-		} else {
-			if ("summary" in x) {
-				var t = x.summary.$t
-			} else {
-				var t = ""
-			}
-		}
-		postdate = x.published.$t;
-		if (j > imgr.length - 1) {
-			j = 0
-		}
-		img[o] = imgr[j];
-		s = t;
-		a = s.indexOf("<img");
-		b = s.indexOf('src="', a);
-		c = s.indexOf('"', b + 5);
-		d = s.substr(b + 5, c - b - 5);
-		if ((a != -1) && (b != -1) && (c != -1) && (d != "")) {
-			img[o] = d
-		}
-		var q = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-		var z = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-		var v = postdate.split("-")[2].substring(0, 2);
-		var h = postdate.split("-")[1];
-		var u = postdate.split("-")[0];
-		for (var e = 0; e < q.length; e++) {
-			if (parseInt(h) == q[e]) {
-				h = z[e];
-				break
-			}
-		}
-		var n = v + " " + h + " " + u;
-		w += '<div class="cat-dark-top"><div><span class="cat-dark-text"><span class="cat-dark-byline">' + n + '</span><h3><a href="' + p + '">' + g + '</a></h3><p>' + removeHtmlTag(t, summaryPosti) + '...</p></span></div></div><div><div><img src="' + img[o] + '" width="280" height="auto" class=""/></div></div>';
-		j++
-	}
-	return w;
-}
+
 function recentComments(k) {
 	if (k.feed.entry == null || k.feed.entry == false || k.feed.entry == undefined)
 		return;
