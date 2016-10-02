@@ -1000,30 +1000,6 @@ function removeHtmlTag(strx, chop) {
 	s = s.substring(0, chop - 1);
 	return s;
 }
-function showclock() {
-	var digital = new Date();
-	var hours = digital.getHours();
-	var minutes = digital.getMinutes();
-	var seconds = digital.getSeconds();
-	var dn = 'AM';
-	if (hours > 12) {
-		dn = 'PM';
-		hours = hours - 12;
-	}
-	if (hours == 0)
-		hours = 12;
-	if (minutes <= 9)
-		minutes = '0' + minutes;
-	if (seconds <= 9)
-		seconds = '0' + seconds;
-	miReloj = '<b><span style="color:#fff;font-size:50px;">'
-		+hours + '</span> : <span style="color:#fff;font-size:50px;">'
-		+minutes + '</span> : <span style="color:#fff;font-size:50px;">'
-		+seconds + '</span></b><span style="color:#fff;font-size:25px;margin-left:5px;">'
-		+dn + '</span>';
-	document.getElementById('livetime').innerHTML = miReloj;
-	setTimeout('showclock()', 1000);
-}
 // Transfer mobile
 function a() {
 	var b = window.location.href,
