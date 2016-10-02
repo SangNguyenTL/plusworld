@@ -311,7 +311,7 @@ margin: 0
 .logo h1 a {
 line-height: 50px;
 font-size: 46px!important;
-font-family: "Lato";
+font-family: "Noto";
 font-weight: 300;
 color: #fff
 }
@@ -323,7 +323,7 @@ opacity: 0.8;
 line-height: 20px;
 text-align: left;
 font-size: 18px!important;
-font-family: "Lato";
+font-family: "Noto";
 font-weight: 300
 }
 .logo p.description span {
@@ -1340,7 +1340,7 @@ input[type="text"] {
 height: 30px;
 font-size: 14px;
 display: inline-block;
-font-family: "Lato";
+font-family: "Noto";
 font-weight: 100;
 border: 0;
 outline: 0;
