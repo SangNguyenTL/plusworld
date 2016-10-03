@@ -930,9 +930,9 @@ function seach(a) {
 }
 
 function recentComments(k) {
-	if (k.feed.entry == null || k.feed.entry == false || k.feed.entry == undefined)
+	if (k.feed.entry == undefined)
 		return;
-	var w;
+	var w='';
 	for (var q = 0; q < 4; q++) {
 		var o = k.feed.entry[q];
 		var u;
