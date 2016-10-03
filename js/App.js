@@ -932,7 +932,7 @@ function seach(a) {
 function recentComments(k) {
 	if (k.feed.entry == undefined)
 		return;
-	var w='<ul>';
+	var w='<ul style="list-style:none">';
 	for (var q = 0; q < 4; q++) {
 		var o = k.feed.entry[q];
 		var u;
