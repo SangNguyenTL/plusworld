@@ -932,7 +932,7 @@ function seach(a) {
 function recentComments(k) {
 	if (k.feed.entry == undefined)
 		return;
-	var w='';
+	var w='<ul>';
 	for (var q = 0; q < 4; q++) {
 		var o = k.feed.entry[q];
 		var u;
@@ -981,7 +981,7 @@ function recentComments(k) {
 		}
 	}
 	w += '</div></li>';
-	return w;
+	return w+'</ul>';
 }
 function sumposts(json) {
 	return json.feed.openSearch$totalResults.$t;
