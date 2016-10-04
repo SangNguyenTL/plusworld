@@ -238,7 +238,7 @@ ul {
     transition: background 0.3s;
 }
 
-.more_logo i{
+.more_logo i, .btn_search{
 	padding: 15px;
     font-size: 20px;
     font-weight: 700;
