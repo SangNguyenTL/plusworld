@@ -1556,7 +1556,7 @@ ul {
 
 #banner-section .banner-wrap .title,#banner-artist-section .banner-wrap .title {
     line-height: 60px;
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 600;
     color: #FFF;
     text-transform: capitalize;
@@ -1568,6 +1568,10 @@ ul {
     padding-right: 10px;
     font-size: 18px;
     color: #FFF;
+    height: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 }
 
 .newupdate_wrap {
