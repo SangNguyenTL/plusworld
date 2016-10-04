@@ -1151,7 +1151,7 @@ $(document).ready(function () {
 	init()
 })();
 
-
+$(document).ready(function(e){
 $('#popup_search,.btn_search').on('click', function() {
 	$('.search_container').toggle("slide", {
 		direction: "right"
@@ -1162,4 +1162,5 @@ $('#popup_search,.btn_search').on('click', function() {
 $('.user_bar').on('click', function() {
 	$('.user_bar_detail').slideToggle(200);
 	$('.avatar_container').toggleClass('active');
+});
 });
