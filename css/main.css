@@ -239,8 +239,9 @@ ul {
 }
 
 .more_logo i, .btn_search{
-	padding: 15px;
-    font-size: 20px;
+    padding: 12px;
+    font-size: 25px;
+    color: #ccc;
     font-weight: 700;
 }
 
