@@ -1486,12 +1486,12 @@ ul {
 }
 
 #banner-section .banner-wrap .title,#banner-artist-section .banner-wrap .title {
-    line-height: 60px;
+    line-height: 50px;
     font-size: 50px;
     font-weight: 600;
     color: #FFF;
     text-transform: capitalize;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
 }
 
 #banner-section .banner-wrap .desc,#banner-artist-section .banner-wrap .desc {
