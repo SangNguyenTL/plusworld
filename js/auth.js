@@ -79,6 +79,7 @@ vnb.Auth = class {
         this.signedInOnlyElements.hide();
         this.userId = null;
         this.signedInUserAvatar.src('http://truyen.vnsharing.site/views/public/imgs/noavatar_blue.jpg');
+		console.log(uiConfig);
         firebaseUi.start('#firebaseui-auth-container', uiConfig);
       } else {
         this.signedOutOnlyElements.hide();
