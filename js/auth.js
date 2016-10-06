@@ -82,6 +82,7 @@ vnb.Auth = class {
 		console.log(uiConfig);
         firebaseUi.start('#firebaseui-auth-container', uiConfig);
       } else {
+		  console.log("A");
         this.signedOutOnlyElements.hide();
         this.signedInOnlyElements.show();
         this.userId = user.uid;
