@@ -78,7 +78,7 @@ vnb.Auth = class {
         this.signedOutOnlyElements.show();
         this.signedInOnlyElements.hide();
         this.userId = null;
-        this.signedInUserAvatar.src('http://truyen.vnsharing.site/views/public/imgs/noavatar_blue.jpg');
+        this.signedInUserAvatar.src = 'http://truyen.vnsharing.site/views/public/imgs/noavatar_blue.jpg';
 		console.log(uiConfig);
         firebaseUi.start('#firebaseui-auth-container', uiConfig);
       } else {
@@ -86,7 +86,7 @@ vnb.Auth = class {
         this.signedOutOnlyElements.hide();
         this.signedInOnlyElements.show();
         this.userId = user.uid;
-        this.signedInUserAvatar.src("${user.photoURL || 'http://truyen.vnsharing.site/views/public/imgs/noavatar_blue.jpg'}");
+        this.signedInUserAvatar.src = "${user.photoURL || 'http://truyen.vnsharing.site/views/public/imgs/noavatar_blue.jpg'}";
         this.signedInUsername.text(user.displayName || 'Anonymous');
         this.usernameLink.attr('href', `/user/${user.uid}`);
         vnb.firebase.saveUserData(user.photoURL, user.displayName);
