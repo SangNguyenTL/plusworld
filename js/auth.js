@@ -55,7 +55,7 @@ vnb.Auth = class {
       this.signOutButton.click(() => this.auth.signOut());
       this.signedInOnlyElements.hide();
     });
-
+	console.log("Start");
     this.auth.onAuthStateChanged(user => this.onAuthStateChanged(user));
   }
 
