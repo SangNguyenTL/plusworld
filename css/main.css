@@ -1246,29 +1246,6 @@ ul {
     margin: 0px 10px;
 }
 
-.user_bar_detail_line {
-    display: block;
-    height: 3px;
-    background: #E27A1F;
-    opacity: 0.7;
-}
-
-.user_bar_detail a {
-    display: block;
-    height: 40px;
-    padding-left: 10px;
-    text-align: left;
-    bottom: 12px;
-    font-size: 14px;
-    color: #FFF;
-    opacity: 0.6;
-    font-weight: 200;
-}
-
-.user_bar_detail a:hover {
-    opacity: 1;
-}
-
 .firebaseui-idp-list {
     list-style: none;
     margin: 1em 0;
