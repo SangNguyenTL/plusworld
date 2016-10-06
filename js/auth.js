@@ -37,8 +37,8 @@ vnb.Auth = class {
    */
   constructor() {
     // Firebase SDK
-    this.database = firebase.database();
-    this.auth = firebase.auth();
+    this.database = this.firebase.database();
+    this.auth = this.firebase.auth();
     this._waitForAuthPromiseResolver = new $.Deferred();
 
     $(document).ready(() => {
