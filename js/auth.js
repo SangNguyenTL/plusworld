@@ -67,10 +67,7 @@ vnb.Auth = class {
     if (user && this.userId === user.uid) {
       return;
     }
-
-    if (window.vnb.router) {
-      window.vnb.router.reloadPage();
-    }
+	
     this._waitForAuthPromiseResolver.resolve();
     $(document).ready(() => {
       if (!user) {
@@ -86,7 +83,7 @@ vnb.Auth = class {
         this.userId = user.uid;
         this.signedInUserAvatar.attr("src", user.photoURL || 'http://truyen.vnsharing.site/views/public/imgs/noavatar_blue.jpg');
         this.signedInUsername.text(user.displayName || 'Anonymous');
-        this.usernameLink.attr('href', `/user/${user.uid}`);
+        this.usernameLink.attr('href', `/p/profile.html?${user.uid}`);
         vnb.firebase.saveUserData(user.photoURL, user.displayName);
       }
     });
