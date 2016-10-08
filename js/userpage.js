@@ -31,9 +31,7 @@ vnb.UserPage = class {
     // Firebase SDK.
     this.database = firebase.database();
     this.auth = firebase.auth();
-	this._GET = {};
-	if(location.search=="" || location.search.substr(1).split("&").length==0) return;
-	location.search.substr(1).split("&").forEach(function(item){this._GET[item.split("=")[0]] = item.split("=")[1]});
+	var $_GET = this.$_GET();
     $(document).ready(() => {
       // DOM Elements.
       this.userAvatar = $('.profile-userpic .img-responsive');
@@ -42,10 +40,23 @@ vnb.UserPage = class {
 	  this.userTasks = $('.link-user-task');
 
       // Event bindings.
-      loadUser(this._GET["uid"]);
+      loadUser($_GET["uid"]);
     });
   }
+	$_GET(param) {
+		var vars = {};
+		window.location.href.replace( location.hash, '' ).replace( 
+			/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+			function( m, key, value ) { // callback
+				vars[key] = value !== undefined ? value : '';
+			}
+		);
 
+		if ( param ) {
+			return vars[param] ? vars[param] : null;	
+		}
+		return vars;
+	}
 
   /**
    * Displays the given user information in the UI.
