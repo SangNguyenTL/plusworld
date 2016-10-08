@@ -40,7 +40,7 @@ vnb.UserPage = class {
 	  this.userTasks = $('.link-user-task');
 
       // Event bindings.
-      loadUser($_GET["uid"]);
+      this.loadUser($_GET["uid"]);
     });
   }
 	$_GET(param) {
