@@ -75,7 +75,6 @@ vnb.Auth = class {
         this.signedInOnlyElements.hide();
         this.userId = null;
         this.signedInUserAvatar.attr("src", "https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png");
-		console.log(firebaseUi);
         firebaseUi.start('#firebaseui-auth-container', uiConfig);
       } else {
         this.signedOutOnlyElements.hide();
