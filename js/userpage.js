@@ -32,7 +32,7 @@ vnb.UserPage = class {
     this.database = firebase.database();
     this.auth = firebase.auth();
 	this._GET = {};
-	location.search.substr(1).split("&").forEach(function(item) {this._GET[item.split("=")[0]] = item.split("=")[1]})
+	location.search.substr(1).split("&").forEach(function(item) {this._GET[item.split("=")[0]] = item.split("=")[1]});
     $(document).ready(() => {
       // DOM Elements.
       this.userAvatar = $('.profile-userpic .img-responsive');
