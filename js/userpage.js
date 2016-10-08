@@ -50,6 +50,7 @@ vnb.UserPage = class {
    * Displays the given user information in the UI.
    */
   loadUser(userId) {
+	if(userId == undefined) return;
     this.userId = userId;
 
     // Reset the UI.
