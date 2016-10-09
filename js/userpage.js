@@ -63,12 +63,14 @@ vnb.UserPage = class {
    * Displays the given user information in the UI.
    */
   loadUser(userId) {
-	if(userId == undefined){
-		return
-	}
+	  
 	if(userId == undefined && window.location.pathname.match(/profile/))
 	{
 		window.location.href = "http://"+window.location.hostname;
+		return
+	}
+	
+	if(userId == undefined){
 		return
 	}
     this.userId = userId;
