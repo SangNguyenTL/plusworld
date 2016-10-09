@@ -64,9 +64,13 @@ vnb.UserPage = class {
    */
   loadUser(userId) {
 	if(userId == undefined){
+		return
+	}
+	if(userId == undefined && window.location.pathname.match(/profile/))
+	{
 		window.location.href = "http://"+window.location.hostname;
 		return
-	} 
+	}
     this.userId = userId;
 
     // Reset the UI.
