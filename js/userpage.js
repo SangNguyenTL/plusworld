@@ -88,7 +88,7 @@ vnb.UserPage = class {
         this.userAvatar.attr('src',
             `${userInfo.profile_picture || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png'}`);
         this.userUsername.text(userInfo.full_name || 'Anonymous');
-		this.position.text(vnb.firebase.loadUserPosition(userInfo.position));
+		this.position.text(vnb.firebase.loadUserPosition(userInfo.position[0]));
       } else {
         var data = {
           message: 'This user does not exists.',
