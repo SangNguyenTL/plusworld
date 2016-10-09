@@ -65,13 +65,6 @@ vnb.Auth = class {
   onAuthStateChanged(user) {
     // We ignore token refresh events.
     if (user && this.userId === user.uid) {
-        this.signedOutOnlyElements.hide();
-        this.signedInOnlyElements.show();
-        this.userId = user.uid;
-        this.signedInUserAvatar.attr("src", user.photoURL || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png');
-        this.signedInUsername.text(user.displayName || 'Anonymous');
-        this.usernameLink.attr('href', `/p/profile.html?uid=${user.uid}`);
-        vnb.firebase.saveUserData(user.photoURL, user.displayName);
 		return;
     }
 	

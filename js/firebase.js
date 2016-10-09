@@ -518,6 +518,13 @@ vnb.Firebase = class {
   }
 
   /**
+   * Load a single user profile information
+   */
+  loadUserPosition(pid) {
+    return this.database.ref(`/options/position/${pid}`).once('value') || "None";
+  }
+
+  /**
    * Listens to updates on the likes of a post and calls the callback with likes counts.
    * TODO: This won't scale if a user has a huge amount of likes. We need to keep track of a
    *       likes count instead.

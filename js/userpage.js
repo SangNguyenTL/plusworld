@@ -38,31 +38,35 @@ vnb.UserPage = class {
       this.userUsername = $('.profile-usertitle-name');
       this.userLinkSettingProfile = $('.link-account-setting');
 	  this.userTasks = $('.link-user-task');
-
+	  this.position = $('profile-usertitle-job');
+	
       // Event bindings.
       this.loadUser($_GET["uid"]);
     });
   }
-	$_GET(param) {
-		var vars = {};
-		window.location.href.replace( location.hash, '' ).replace( 
-			/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-			function( m, key, value ) { // callback
-				vars[key] = value !== undefined ? value : '';
-			}
-		);
-
-		if ( param ) {
-			return vars[param] ? vars[param] : null;	
+  $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
 		}
-		return vars;
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
 	}
+	return vars;
+  }
 
   /**
    * Displays the given user information in the UI.
    */
   loadUser(userId) {
-	if(userId == undefined) return;
+	if(userId == undefined){
+		window.location.href = "http://"+window.location.hostname;
+		return
+	} 
     this.userId = userId;
 
     // Reset the UI.
@@ -84,7 +88,7 @@ vnb.UserPage = class {
         this.userAvatar.attr('src',
             `${userInfo.profile_picture || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png'}`);
         this.userUsername.text(userInfo.full_name || 'Anonymous');
-
+		this.position.text(vnb.firebase.loadUserPosition(userInfo.position));
       } else {
         var data = {
           message: 'This user does not exists.',
