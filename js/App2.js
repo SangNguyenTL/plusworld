@@ -10,18 +10,205 @@ function createTicker(){var b=jQuery(".breaking-news ul").children();tickerItems
 function actinave(e){var h=window.location.href;e("#navi a").each(function(){if(this.href===h){var a=e(this).parents("li").children("a").addClass("current")}});e("#navi ul").removeClass("hidden");e("#navi li").hoverTimeout(100,function(){e(this).parent("ul").css("overflow","visible");e(this).children("ul").filter(":not(:animated)").slideDown()},500,function(){e(this).parent("ul").css("overflow","visible");e(this).children("ul").slideUp(800,"easeInExpo")});e("#mobilenav").click(function(){e("#navi").slideToggle();e(this).toggleClass("active");return false});e("#top_mobilenav").click(function(){e("#PageList1 ul").slideToggle();e(this).toggleClass("active");return false});function f(){if(e(window).width()>767){e("#navi").css("display","block").removeClass("suball")}else{if(e(window).width()<=767&&e("#mobilenav").attr("class")==="active"){e("#navi").css("display","block").addClass("suball")}else{if(e(window).width()<=767&&e("#mobilenav").attr("class")!=="active"){e("#navi").css("display","none").addClass("suball")}}}}function g(){if(e(window).width()>767){e("#PageList1 ul").css("display","block")}else{if(e(window).width()<=767&&e("#top_mobilenav").attr("class")==="active"){e("#PageList1 ul").css("display","block")}else{if(e(window).width()<=767&&e("#top_mobilenav").attr("class")!=="active"){e("#PageList1 ul").css("display","none")}}}}f();g();e(window).resize(f);e(window).resize(g)}function seach(a){(function(e){var l={blogURL:"",srcBlank:"",findText:"Search results for keyword",NotfindText:"No result!",Showthumb:true,LoadingText:"Searching...",scrthumbSize:50,summaryLength:100};l=e.extend({},l,a);var b=e("#ajax-search-form"),f=b.find(":text");b.append('<div id="search-result"></div>');var d=e("#search-result");b.on("submit",function(){var g=f.val();d.show().html('<div class="load">'+l.LoadingText+"</div>");e.get((l.blogURL===""?window.location.protocol+"//"+window.location.host:l.blogURL)+"/feeds/posts/summary?alt=json-in-script&q="+g+"&max-results=9999",function(z){var q=z.feed.entry,o,n,h,p,k="";if(q!==undefined){k="<h4>"+l.findText+" &quot;"+g+"&quot;</h4>";k+='<a class="close" href="/">&times;</a><ol>';for(var m=0;m<q.length;m++){var A=new RegExp(g,"ig"),h=q[m].title.$t.replace(A,"<mark>"+g+"</mark>");for(var y=0;y<q[m].link.length;y++){if(q[m].link[y].rel=="alternate"){p=q[m].link[y].href}}if(l.summaryLength>0){if("content"in q[m]){o=q[m].content.$t}else{if("summary"in q[m]){o=q[m].summary.$t}else{o=""}}o=o.replace(/<\S[^>]*>/g,"");if(o.length>l.summaryLength){o=o.substring(0,l.summaryLength)+"..."}o=o.replace(A,"<mark>"+g+"</mark>")}if(l.Showthumb===true){if("media$thumbnail"in q[m]){n=q[m].media$thumbnail.url.replace(/\/s[0-9]+\-c/g,"/s"+l.scrthumbSize+"-c")}else{n=l.srcBlank}}k+='<li><a href="'+p+'" >'+(l.Showthumb===true?'<img width="'+l.scrthumbSize+'" height="'+l.scrthumbSize+'" src="'+n+'"/>':"")+"<strong>"+h+"</strong></a>"+(l.summaryLength>0?"<p>"+o+"</p>":"")+"</li>"}k+="</ol>";d.html(k)}else{d.html('<a class="close" href="/">&times;</a><strong>'+l.NotfindText+"</strong>")}},"jsonp");return false});b.on("click",".close",function(){d.fadeOut();return false})})(jQuery)}
 
 // Recent Post
-function showrecentposts(A){j=(showRandomImg)?Math.floor((imgr.length+1)*Math.random()):0;img=new Array();for(var o=0;o<A.feed.entry.length;o++){var x=A.feed.entry[o];if(x==undefined) return;var g=x.title.$t;var r=x.author[0].name.$t;var f;var p;if(o==A.feed.entry.length){break}for(var l=0;l<x.link.length;l++){if(x.link[l].rel=="alternate"){p=x.link[l].href;break}}for(var l=0;l<x.link.length;l++){if(x.link[l].rel=="replies"&&x.link[l].type=="text/html"){f=x.link[l].title.split(" ")[0];break}}if("content"in x){var t=x.content.$t}else{if("summary"in x){var t=x.summary.$t}else{var t=""}}postdate=x.published.$t;if(j>imgr.length-1){j=0}img[o]=imgr[j];s=t;a=s.indexOf("<img");b=s.indexOf('src="',a);c=s.indexOf('"',b+5);d=s.substr(b+5,c-b-5);if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!="")){img[o]=d}var q=[1,2,3,4,5,6,7,8,9,10,11,12];var z=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var v=postdate.split("-")[2].substring(0,2);var h=postdate.split("-")[1];var u=postdate.split("-")[0];for(var e=0;e<q.length;e++){if(parseInt(h)==q[e]){h=z[e];break}}var n=v+" "+h+" "+u;var w='<div class="cat-dark-top"><div><span class="cat-dark-text"><span class="cat-dark-byline">'+n+'</span><h3><a href="'+p+'">'+g+'</a></h3><p>'+removeHtmlTag(t,summaryPosti)+'...</p></span></div></div><div><div><img src="'+img[o]+'" width="280" height="auto" class=""/></div></div>';document.write(w);j++}}function wideposts(A){j=(showRandomImg)?Math.floor((imgr.length+1)*Math.random()):0;img=new Array();for(var o=0;o<numposts;o++){var x=A.feed.entry[o];if(x==undefined)return;var g=x.title.$t;var r=x.author[0].name.$t;var f;var p;if(o==A.feed.entry.length){break}for(var l=0;l<x.link.length;l++){if(x.link[l].rel=="alternate"){p=x.link[l].href;break}}for(var l=0;l<x.link.length;l++){if(x.link[l].rel=="replies"&&x.link[l].type=="text/html"){f=x.link[l].title.split(" ")[0];break}}if("content"in x){var t=x.content.$t}else{if("summary"in x){var t=x.summary.$t}else{var t=""}}postdate=x.published.$t;if(j>imgr.length-1){j=0}img[o]=imgr[j];s=t;a=s.indexOf("<img");b=s.indexOf('src="',a);c=s.indexOf('"',b+5);d=s.substr(b+5,c-b-5);if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!="")){img[o]=d}var q=[1,2,3,4,5,6,7,8,9,10,11,12];var z=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var v=postdate.split("-")[2].substring(0,2);var h=postdate.split("-")[1];var u=postdate.split("-")[0];for(var e=0;e<q.length;e++){if(parseInt(h)==q[e]){h=z[e];break}}var n=v+" "+h+" "+u;var w='<span class="tile-title"><a href="'+p+'">'+g+'</a></span><div><img src="'+img[o]+'" width="280" height="200" class="alignleft"/></div><div><p>'+removeHtmlTag(t,summaryPost2)+"...</p></div>";document.write(w);j++}}
+function showrecentposts(A) {
+	j = (showRandomImg) ? Math.floor((imgr.length + 1) * Math.random()) : 0;
+	img = new Array();
+	var html = '';
+	for (var o = 0; o < A.feed.entry.length; o++) {
+		var x = A.feed.entry[o];
+		if (x == undefined)
+			return;
+		var g = x.title.$t;
+		var r = x.author[0].name.$t;
+		var f;
+		var p;
+		if (o == A.feed.entry.length) {
+			break
+		}
+		for (var l = 0; l < x.link.length; l++) {
+			if (x.link[l].rel == "alternate") {
+				p = x.link[l].href;
+				break
+			}
+		}
+		for (var l = 0; l < x.link.length; l++) {
+			if (x.link[l].rel == "replies" && x.link[l].type == "text/html") {
+				f = x.link[l].title.split(" ")[0];
+				break
+			}
+		}
+		if ("content" in x) {
+			var t = x.content.$t
+		} else {
+			if ("summary" in x) {
+				var t = x.summary.$t
+			} else {
+				var t = ""
+			}
+		}
+		postdate = x.published.$t;
+		if (j > imgr.length - 1) {
+			j = 0
+		}
+		img[o] = imgr[j];
+		s = t;
+		a = s.indexOf("<img");
+		b = s.indexOf('src="', a);
+		c = s.indexOf('"', b + 5);
+		d = s.substr(b + 5, c - b - 5);
+		if ((a != -1) && (b != -1) && (c != -1) && (d != "")) {
+			img[o] = d
+		}
+		var q = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+		var z = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var v = postdate.split("-")[2].substring(0, 2);
+		var h = postdate.split("-")[1];
+		var u = postdate.split("-")[0];
+		for (var e = 0; e < q.length; e++) {
+			if (parseInt(h) == q[e]) {
+				h = z[e];
+				break
+			}
+		}
+		var n = v + " " + h + " " + u;
+		var w = '<div class="cat-dark-top"><div><span class="cat-dark-text"><span class="cat-dark-byline">' + n + '</span><h3><a href="' + p + '">' + g + '</a></h3><p>' + removeHtmlTag(t, summaryPosti) + '...</p></span></div></div><div><div><img src="' + img[o] + '" width="280" height="auto" class=""/></div></div>';
+		html += w;
+		j++
+	}
+	return html;
+}
+function wideposts(A) {
+	j = (showRandomImg) ? Math.floor((imgr.length + 1) * Math.random()) : 0;
+	img = new Array();
+	var html = '';
+	for (var o = 0; o < numposts; o++) {
+		var x = A.feed.entry[o];
+		if (x == undefined)
+			return;
+		var g = x.title.$t;
+		var r = x.author[0].name.$t;
+		var f;
+		var p;
+		if (o == A.feed.entry.length) {
+			break
+		}
+		for (var l = 0; l < x.link.length; l++) {
+			if (x.link[l].rel == "alternate") {
+				p = x.link[l].href;
+				break
+			}
+		}
+		for (var l = 0; l < x.link.length; l++) {
+			if (x.link[l].rel == "replies" && x.link[l].type == "text/html") {
+				f = x.link[l].title.split(" ")[0];
+				break
+			}
+		}
+		if ("content" in x) {
+			var t = x.content.$t
+		} else {
+			if ("summary" in x) {
+				var t = x.summary.$t
+			} else {
+				var t = ""
+			}
+		}
+		postdate = x.published.$t;
+		if (j > imgr.length - 1) {
+			j = 0
+		}
+		img[o] = imgr[j];
+		s = t;
+		a = s.indexOf("<img");
+		b = s.indexOf('src="', a);
+		c = s.indexOf('"', b + 5);
+		d = s.substr(b + 5, c - b - 5);
+		if ((a != -1) && (b != -1) && (c != -1) && (d != "")) {
+			img[o] = d
+		}
+		var q = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+		var z = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var v = postdate.split("-")[2].substring(0, 2);
+		var h = postdate.split("-")[1];
+		var u = postdate.split("-")[0];
+		for (var e = 0; e < q.length; e++) {
+			if (parseInt(h) == q[e]) {
+				h = z[e];
+				break
+			}
+		}
+		var n = v + " " + h + " " + u;
+		var w = '<span class="tile-title"><a href="' + p + '">' + g + '</a></span><div><img src="' + img[o] + '" width="280" height="200" class="alignleft"/></div><div><p>' + removeHtmlTag(t, summaryPost2) + "...</p></div>";
+		html += w;
+		j++
+	}
+	return html;
+}
+
 
 // Recent Comment
-function recentComments(k){if(k.feed.entry==null||k.feed.entry==false||k.feed.entry==undefined)return;for(var q=0;q<4;q++){var o=k.feed.entry[q];var u;if(q==k.feed.entry.length){break}for(var s=0;s<o.link.length;s++){if(o.link[s].rel=="alternate"){u=o.link[s].href;break}}u=u.replace("#","#comment-");var i=u.split("#");i=i[0];var r=i.split("/");r=r[5];r=r.split(".html");r=r[0];var v=r.replace(/-/g," ");v=v.link(i);if("content"in o){var p=o.content.$t}else{if("summary"in o){var p=o.summary.$t}else{var p=""}}var n=/<\S[^>]*>>/g;p=p.replace(n,"");if(q==0){document.write('<li style="clear:both">')}else{document.write('<li style="clear:both">')}document.write('<div style="display:inline;float:left;margin-right:10px;"><img class="align-left" width="35" height="35" src="'+o.author[0].gd$image.src+'"/></div><div style="margin-left:50px;">'+o.author[0].name.$t+" :<br/>  ");if(p.length<70){document.write('<a href="'+u+'">'+p+'</a>')}else{p=p.substring(0,70);var t=p.lastIndexOf(" ");p=p.substring(0,t);document.write('<a href="'+u+'">'+p+'... </a>')}}document.write('</div></li>')}
+function recentComments(k) {
+	if (k.feed.entry == null || k.feed.entry == false || k.feed.entry == undefined)
+		return;
+	var html = '';
+	for (var q = 0; q < 4; q++) {
+		var o = k.feed.entry[q];
+		var u;
+		if (q == k.feed.entry.length) {
+			break
+		}
+		for (var s = 0; s < o.link.length; s++) {
+			if (o.link[s].rel == "alternate") {
+				u = o.link[s].href;
+				break
+			}
+		}
+		u = u.replace("#", "#comment-");
+		var i = u.split("#");
+		i = i[0];
+		var r = i.split("/");
+		r = r[5];
+		r = r.split(".html");
+		r = r[0];
+		var v = r.replace(/-/g, " ");
+		v = v.link(i);
+		if ("content" in o) {
+			var p = o.content.$t
+		} else {
+			if ("summary" in o) {
+				var p = o.summary.$t
+			} else {
+				var p = ""
+			}
+		}
+		var n = /<\S[^>]*>>/g;
+		p = p.replace(n, "");
+		if (q == 0) {
+			html += '<li style="clear:both">';
+		} else {
+			html += '<li style="clear:both">';
+		}
+		html += '<div style="display:inline;float:left;margin-right:10px;"><img class="align-left" width="35" height="35" src="' + o.author[0].gd$image.src + '"/></div><div style="margin-left:50px;">' + o.author[0].name.$t + " :<br/>  ";
+		if (p.length < 70) {
+			html += '<a href="' + u + '">' + p + '</a>';
+		} else {
+			p = p.substring(0, 70);
+			var t = p.lastIndexOf(" ");
+			p = p.substring(0, t);
+			html += '<a href="' + u + '">' + p + '... </a>';
+		}
+	}
+	html += '</div></li>';
+}
+
 
 // Count Number post
 function sumposts(json) { 
-document.write(' ' + json.feed.openSearch$totalResults.$t + ' '); 
+	return ' ' + json.feed.openSearch$totalResults.$t + ' '; 
 }
 // Count Number comment
 function numcomments(json) { 
-document.write(' ' + json.feed.openSearch$totalResults.$t + ' ');
+	return ' ' + json.feed.openSearch$totalResults.$t + ' ';
 }
 // Remove Html Tag
 function removeHtmlTag(strx,chop){
