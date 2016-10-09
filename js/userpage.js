@@ -83,12 +83,14 @@ vnb.UserPage = class {
     // Load user's profile.
     vnb.firebase.loadUserProfile(userId).then(snapshot => {
       const userInfo = snapshot.val();
+	  this.userInfo = userInfo;
       if (userInfo) {
         this.userAvatar.attr('src',
             `${userInfo.profile_picture || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png'}`);
         this.userUsername.text(userInfo.full_name || 'Anonymous');
 		vnb.firebase.loadNameUserPositions().then(snapshot => {
-			this.position.text(snapshot.val()[userInfo.positions[0]]);
+			if(snapshot.val())
+			this.position.text(snapshot.val()[this.userInfo.positions[0]]);
 		});
 		  var liElement = '<li class="active">'+
 							'<a href="#Overview">'+
