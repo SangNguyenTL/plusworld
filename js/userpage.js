@@ -89,7 +89,7 @@ vnb.UserPage = class {
         this.userUsername.text(userInfo.full_name || 'Anonymous');
 		vnb.firebase.loadNameUserPositions().then(snapshot => {
 			this.position.text(snapshot.val()[userInfo.positions[0]]);
-		}
+		});
 		  var liElement = '<li class="active">'+
 							'<a href="#Overview">'+
 							'<i class="glyphicon glyphicon-home"></i>'+
