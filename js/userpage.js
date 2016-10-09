@@ -34,12 +34,13 @@ vnb.UserPage = class {
 	var $_GET = this.$_GET();
     $(document).ready(() => {
       // DOM Elements.
+	  $(".post-page").html(this.buidHtml());
       this.userAvatar = $('.profile-userpic .img-responsive');
       this.userUsername = $('.profile-usertitle-name');
       this.userLinkSettingProfile = $('.link-account-setting');
 	  this.userTasks = $('.link-user-task');
-	  this.position = $('profile-usertitle-job');
-	
+	  this.position = $('.profile-usertitle-job');
+	  this.navUserPage = $('.nav.user-page');
       // Event bindings.
       this.loadUser($_GET["uid"]);
     });
@@ -78,14 +79,6 @@ vnb.UserPage = class {
     // Reset the UI.
     this.clear();
 
-    // If users is the currently signed-in user we hide the "Follow" Checkbox.
-    if (this.auth.currentUser && userId === this.auth.currentUser.uid) {
-      this.userLinkSettingProfile.show();
-      this.userTasks.show();
-    } else {
-      this.userLinkSettingProfile.hide();
-      this.userTasks.hide();
-    }
 
     // Load user's profile.
     vnb.firebase.loadUserProfile(userId).then(snapshot => {
@@ -94,7 +87,20 @@ vnb.UserPage = class {
         this.userAvatar.attr('src',
             `${userInfo.profile_picture || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png'}`);
         this.userUsername.text(userInfo.full_name || 'Anonymous');
-		this.position.text(vnb.firebase.loadUserPosition(userInfo.positions[0]));
+		this.position.text(vnb.firebase.loadNameUserPositions(userInfo.positions[0]));
+		
+		  var liElement = '<li class="active">'+
+							'<a href="#Overview">'+
+							'<i class="glyphicon glyphicon-home"></i>'+
+							'Overview </a>'+
+						   '</li>';
+		  if(this.auth.currentUser && userId === this.auth.currentUser.uid || Object.values(vnb.firebase.loadUserPositions(this.auth.currentUser.uid)).indexOf(0))
+			  liElement += '<li>'+
+							'<a href="#Account_Settings">'+
+							'<i class="glyphicon glyphicon-user"></i>'+
+							'Account Settings </a>'+
+						   '</li>';
+		this.navUserPage.html(liElement);   
       } else {
         var data = {
           message: 'This user does not exists.',
@@ -111,7 +117,9 @@ vnb.UserPage = class {
   clear() {
     
   }
-
+  buidHtml(){
+	  return '<div class="container"><div class="row profile"><div class="col-md-3"><div class="profile-sidebar"><div class="profile-userpic"><img alt="" class="img-responsive" src="" /></div><div class="profile-usertitle"><div class="profile-usertitle-name"></div><div class="profile-usertitle-job"></div></div><div class="profile-userbuttons"><button class="btn btn-success btn-sm" type="button">Follow</button><button class="btn btn-danger btn-sm" type="button">Message</button></div><div class="profile-usermenu"><ul class="nav user-page"></ul></div></div></div><div class="col-md-9"><div class="profile-content"></div></div></div></div>';
+  }
 };
 
 vnb.userPage = new vnb.UserPage();
