@@ -80,11 +80,11 @@ vnb.UserPage = class {
 
     // If users is the currently signed-in user we hide the "Follow" Checkbox.
     if (this.auth.currentUser && userId === this.auth.currentUser.uid) {
-      this.userLinkSettingProfile.hide();
-      this.userTasks.hide();
-    } else {
       this.userLinkSettingProfile.show();
       this.userTasks.show();
+    } else {
+      this.userLinkSettingProfile.hide();
+      this.userTasks.hide();
     }
 
     // Load user's profile.
@@ -94,7 +94,7 @@ vnb.UserPage = class {
         this.userAvatar.attr('src',
             `${userInfo.profile_picture || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png'}`);
         this.userUsername.text(userInfo.full_name || 'Anonymous');
-		this.position.text(vnb.firebase.loadUserPosition(userInfo.position[0]));
+		this.position.text(vnb.firebase.loadUserPosition(userInfo.positions[0]));
       } else {
         var data = {
           message: 'This user does not exists.',
