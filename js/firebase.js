@@ -521,7 +521,7 @@ vnb.Firebase = class {
    * Load a single user profile information
    */
   loadUserPositions(uid) {
-    return this.database.ref(`/people/${uid}/positions`).once('value').then(snapshot => { return snapshot.val }) || [];
+    return this.database.ref(`/people/${uid}/positions`).once('value') || [];
   }
   
   /**
