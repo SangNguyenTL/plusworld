@@ -87,7 +87,7 @@ vnb.UserPage = class {
         this.userAvatar.attr('src',
             `${userInfo.profile_picture || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png'}`);
         this.userUsername.text(userInfo.full_name || 'Anonymous');
-		this.position.text(vnb.firebase.loadNameUserPositions(userInfo.positions[0]));
+		this.position.text(vnb.firebase.loadNameUserPositions()[userInfo.positions[0]]);
 		
 		  var liElement = '<li class="active">'+
 							'<a href="#Overview">'+

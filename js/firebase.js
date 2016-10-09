@@ -521,14 +521,14 @@ vnb.Firebase = class {
    * Load a single user profile information
    */
   loadUserPositions(uid) {
-    return this.database.ref(`/people/${uid}/positions`).once('value') || [];
+    return this.database.ref(`/people/${uid}/positions`).once('value').then(snapshot => { return snapshot.val }) || [];
   }
   
   /**
    * Load a single user profile information
    */
-  loadNameUserPositions(uid) {
-    return this.database.ref(`/options/positions/${uid}`).once('value') || "None";
+  loadNameUserPositions() {
+    return this.database.ref(`/options/positions`).once('value') || "None";
   }
 
   /**
