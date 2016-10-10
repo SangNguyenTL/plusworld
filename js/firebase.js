@@ -371,7 +371,7 @@ vnb.Firebase = class {
       _search_index: {
         full_name: searchFullName,
         reversed_full_name: searchReversedFullName
-      }
+      },
 	  positions: user.positions
     };
     return this.database.ref(`people/${this.auth.currentUser.uid}`).update(updateData);
