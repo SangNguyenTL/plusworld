@@ -352,7 +352,7 @@ vnb.Firebase = class {
    * Saves or updates public user data in Firebase (such as image URL, display name...).
    */
   saveUserData(user) {
-	const displayName = user.photoURL, imageUrl = user.displayName;
+	const displayName = user.displayName, imageUrl = user.photoURL;
     if (!displayName) {
       displayName = 'Anonymous';
     }
