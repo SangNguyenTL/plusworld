@@ -78,12 +78,19 @@ vnb.Auth = class {
         firebaseUi.start('#firebaseui-auth-container', uiConfig);
       } else {
         this.signedOutOnlyElements.hide();
-        this.signedInOnlyElements.show();
         this.userId = user.uid;
+		if(user.sign_date == undefined){
+			user.sign_date = new Date().toGMTString();
+			user.positions = [6];
+		}
+		this.auth.currentUser.positions = user.positions;
         this.signedInUserAvatar.attr("src", user.photoURL || 'https://lh3.googleusercontent.com/-Mbql_y7O1uU/V_jWZZ4dPeI/AAAAAAAFVJw/x3zTVFfRJgk/s0/user.png');
         this.signedInUsername.text(user.displayName || 'Anonymous');
         this.usernameLink.attr('href', `/p/profile.html?uid=${user.uid}`);
-        vnb.firebase.saveUserData(user.photoURL, user.displayName);
+		
+        vnb.firebase.saveUserData(user);
+		//show nav user
+		this.signedInOnlyElements.show();
       }
     });
   }

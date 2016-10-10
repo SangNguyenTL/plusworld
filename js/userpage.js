@@ -97,22 +97,12 @@ vnb.UserPage = class {
 							'<i class="glyphicon glyphicon-home"></i>'+
 							'Overview </a>'+
 						   '</li>';
-		  if(this.auth.currentUser && userId === this.auth.currentUser.uid || Object.values().indexOf(0))
+		  if(this.auth.currentUser && userId === this.auth.currentUser.uid || this.auth.currentUser.positions.indexOf(0))
 			  liElement += '<li>'+
 							'<a href="#Account_Settings">'+
 							'<i class="glyphicon glyphicon-user"></i>'+
 							'Account Settings </a>'+
 						   '</li>';
-		  else
-			vnb.firebase.loadUserPositions(this.auth.currentUser.uid).then(snapshot => {
-				if(snapshot.val() && snapshot.val().indexOf(0) != -1){
-					liElement += '<li>'+
-						'<a href="#Account_Settings">'+
-						'<i class="glyphicon glyphicon-user"></i>'+
-						'Account Settings </a>'+
-					   '</li>';
-				}
-			});
 		
 		this.navUserPage.html(liElement);   
       } else {

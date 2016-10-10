@@ -351,7 +351,8 @@ vnb.Firebase = class {
   /**
    * Saves or updates public user data in Firebase (such as image URL, display name...).
    */
-  saveUserData(imageUrl, displayName) {
+  saveUserData(user) {
+	const displayName = user.photoURL, imageUrl = user.displayName;
     if (!displayName) {
       displayName = 'Anonymous';
     }
@@ -371,6 +372,7 @@ vnb.Firebase = class {
         full_name: searchFullName,
         reversed_full_name: searchReversedFullName
       }
+	  positions: user.positions
     };
     return this.database.ref(`people/${this.auth.currentUser.uid}`).update(updateData);
   }
