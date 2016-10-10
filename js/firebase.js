@@ -372,7 +372,8 @@ vnb.Firebase = class {
         full_name: searchFullName,
         reversed_full_name: searchReversedFullName
       },
-	  positions: user.positions
+	  positions: user.positions,
+	  sign_date : user.sign_date
     };
     return this.database.ref(`people/${this.auth.currentUser.uid}`).update(updateData);
   }
